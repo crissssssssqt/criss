@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>A Special Question ❤️</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            font-family: Arial, sans-serif;
+
+            background:
+                radial-gradient(circle at top, #ffd6e7, #ff9fbd);
+
+            overflow: hidden;
+        }
+
+        .card {
+            width: 90%;
+            max-width: 550px;
+
+            background: rgba(255,255,255,0.95);
+
+            padding: 45px 30px;
+
+            border-radius: 30px;
+
+            text-align: center;
+
+            box-shadow:
+                0 20px 50px rgba(0,0,0,0.15);
+
+            position: relative;
+            z-index: 2;
+        }
+
+        .heart {
+            font-size: 80px;
+
+            animation:
+                heartbeat 1.2s infinite;
+        }
+
+        @keyframes heartbeat {
+
+            0%, 100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.15);
+            }
+        }
+
+        h1 {
+            color: #e91e63;
+
+            font-size: 35px;
+
+            margin: 15px 0;
+        }
+
+        p {
+            color: #666;
+
+            font-size: 18px;
+
+            line-height: 1.6;
+        }
+
+        .buttons {
+            margin-top: 30px;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            gap: 20px;
+        }
+
+        button {
+            border: none;
+
+            padding: 15px 30px;
+
+            border-radius: 50px;
+
+            font-size: 18px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            transition:
+                transform 0.3s,
+                font-size 0.3s,
+                padding 0.3s;
+        }
+
+        #yesButton {
+            background: #e91e63;
+
+            color: white;
+
+            box-shadow:
+                0 8px 20px rgba(233,30,99,0.3);
+        }
+
+        #noButton {
+            background: #eee;
+
+            color: #555;
+        }
+
+        #yesButton:hover {
+            transform: scale(1.08);
+        }
+
+        #noButton:hover {
+            background: #ddd;
+        }
+
+        .message {
+            margin-top: 20px;
+
+            color: #e91e63;
+
+            font-weight: bold;
+
+            min-height: 25px;
+        }
+
+        .floating-heart {
+            position: fixed;
+
+            color: #ff4f81;
+
+            font-size: 25px;
+
+            animation: floatUp 5s linear infinite;
+
+            opacity: 0.5;
+        }
+
+        @keyframes floatUp {
+
+            from {
+                transform:
+                    translateY(100vh)
+                    rotate(0deg);
+            }
+
+            to {
+                transform:
+                    translateY(-100px)
+                    rotate(360deg);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="card">
+
+    <div class="heart">
+        ❤️
+    </div>
+
+    <h1>
+        may tanong ako
+    </h1>
+
+    <p>
+        There's someone I'd really love to spend
+        some time with.
+    </p>
+
+    <p>
+        And that someone is <strong>you.</strong> 🥰
+    </p>
+
+    <h2>
+        Gusto mo ba makipag kita sakin?
+    </h2>
+
+    <div class="buttons">
+
+        <button id="yesButton" onclick="sayYes()">
+            YES ❤️
+        </button>
+
+        <button id="noButton" onclick="sayNo()">
+            NO
+        </button>
+
+    </div>
+
+    <div
+        class="message"
+        id="message">
+    </div>
+
+</div>
+
+
+<script>
+
+let yesSize = 18;
+
+let noClicks = 0;
+
+
+function sayYes() {
+
+    window.location.href = "date.html";
+
+}
+
+
+function sayNo() {
+
+    noClicks++;
+
+    yesSize += 8;
+
+    const yesButton =
+        document.getElementById("yesButton");
+
+    const noButton =
+        document.getElementById("noButton");
+
+    const message =
+        document.getElementById("message");
+
+
+    yesButton.style.fontSize =
+        yesSize + "px";
+
+
+    yesButton.style.padding =
+        (15 + noClicks * 3) +
+        "px " +
+        (30 + noClicks * 5) +
+        "px";
+
+
+    if (noClicks === 1) {
+
+        message.innerHTML =
+            "Are you sure? ";
+
+    }
+
+    else if (noClicks === 2) {
+
+        message.innerHTML =
+            "Sure na sure na?";
+
+    }
+
+    else if (noClicks === 3) {
+
+        message.innerHTML =
+            "Baka sumabog uy";
+
+    }
+
+    else {
+
+        message.innerHTML =
+            "pukot talaga";
+
+    }
+
+
+    if (noClicks >= 5) {
+
+        noButton.style.transform =
+            "scale(0.6)";
+
+    }
+
+}
+
+
+// Create floating hearts
+
+function createHeart() {
+
+    const heart =
+        document.createElement("div");
+
+    heart.className =
+        "floating-heart";
+
+    heart.innerHTML = "❤️";
+
+    heart.style.left =
+        Math.random() * 100 + "vw";
+
+    heart.style.animationDuration =
+        (3 + Math.random() * 4) + "s";
+
+    document.body.appendChild(heart);
+
+
+    setTimeout(() => {
+
+        heart.remove();
+
+    }, 7000);
+
+}
+
+
+setInterval(createHeart, 700);
+
+</script>
+
+</body>
+</html>

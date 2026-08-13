@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Our Date ❤️</title>
+
+<style>
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+
+    margin: 0;
+
+    min-height: 100vh;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    font-family: Arial, sans-serif;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ffdde8,
+            #ffc1d6
+        );
+
+}
+
+.card {
+
+    width: 90%;
+
+    max-width: 600px;
+
+    background: white;
+
+    padding: 40px;
+
+    border-radius: 25px;
+
+    text-align: center;
+
+    box-shadow:
+        0 20px 50px
+        rgba(0,0,0,0.15);
+
+}
+
+h1 {
+
+    color: #e91e63;
+
+}
+
+input {
+
+    width: 100%;
+
+    padding: 15px;
+
+    margin: 10px 0 20px;
+
+    border: 2px solid #ffd0df;
+
+    border-radius: 10px;
+
+    font-size: 16px;
+
+}
+
+label {
+
+    display: block;
+
+    text-align: left;
+
+    font-weight: bold;
+
+    color: #555;
+
+}
+
+button {
+
+    margin-top: 15px;
+
+    padding: 15px 30px;
+
+    border: none;
+
+    border-radius: 50px;
+
+    background: #e91e63;
+
+    color: white;
+
+    font-size: 18px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+}
+
+button:hover {
+
+    background: #c2185b;
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="card">
+
+    <h1>
+        Yay! ❤️
+    </h1>
+
+    <p>
+        So... when should we have our date?
+    </p>
+
+
+    <form
+        id="dateForm">
+
+
+        <label>
+            📅 Pick a date
+        </label>
+
+        <input
+            type="date"
+            id="date"
+            required
+        >
+
+
+        <label>
+            ⏰ Pick a time
+        </label>
+
+        <input
+            type="time"
+            id="time"
+            required
+        >
+
+
+        <button type="submit">
+
+            Confirm Our Date ❤️
+
+        </button>
+
+    </form>
+
+</div>
+
+
+<script>
+
+document
+    .getElementById("dateForm")
+    .addEventListener(
+        "submit",
+        function(event) {
+
+            event.preventDefault();
+
+
+            const date =
+                document.getElementById("date").value;
+
+            const time =
+                document.getElementById("time").value;
+
+
+            // Save the choices
+            localStorage.setItem(
+                "date",
+                date
+            );
+
+            localStorage.setItem(
+                "time",
+                time
+            );
+
+
+            window.location.href =
+                "confirm.html";
+
+        }
+    );
+
+</script>
+
+</body>
+
+</html>
